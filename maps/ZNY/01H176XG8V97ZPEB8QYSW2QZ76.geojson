@@ -1,0 +1,5 @@
+{"name":"SID-ZNY - MOA","type":"FeatureCollection","features":[
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-78.62472222222222,42.05611111111111]},"properties":{"isLineDefaults":true,"bcg":1,"filters":[0],"style":"Solid","thickness":1}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-78.62472222222222,42.05611111111111]},"properties":{"isTextDefaults":true,"bcg":1,"filters":[0],"size":1,"underline":false,"opaque":false,"xOffset":0,"yOffset":0}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-78.62472222222222,42.05611111111111]},"properties":{"isSymbolDefaults":true,"bcg":1,"filters":[0],"style":"Vor","size":1}},
+{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-78.13944444444445,41.718333333333334],[-78.13944444444445,41.718333333333334]]}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-78.62472222222222,41.38472222222222],[-78.48583333333333,42.05611111111111],[-77.4075,41.91694444444444],[-77.80972222222222,41.344166666666666],[-78.62472222222222,41.38472222222222]]}}]}

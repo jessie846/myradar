@@ -1,0 +1,5 @@
+{"type":"FeatureCollection","features":[
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.429886,40.740781]},"properties":{"isLineDefaults":true,"bcg":6,"filters":[10,4,5],"style":"Solid","thickness":1}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.429886,40.740781]},"properties":{"isTextDefaults":true,"bcg":6,"filters":[10,4,5],"size":1,"underline":false,"opaque":false,"xOffset":0,"yOffset":0}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.429886,40.740781]},"properties":{"isSymbolDefaults":true,"bcg":6,"filters":[10,4,5],"style":"Ndb","size":1}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.429886,40.740781]},"properties":{}}]}

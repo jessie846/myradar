@@ -1,0 +1,21 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    mini_portile2 (2.8.7)
+    nokogiri (1.15.5)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
+    nori (2.6.0)
+    racc (1.7.3)
+
+PLATFORMS
+  arm64-darwin-20
+  x64-mingw-ucrt
+  x86_64-darwin-19
+
+DEPENDENCIES
+  nokogiri
+  nori
+
+BUNDLED WITH
+   2.2.26
