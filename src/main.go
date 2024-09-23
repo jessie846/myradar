@@ -8,7 +8,6 @@ import (
 	"github.com/jessie846/myradar/src/file_list"
 	"github.com/jessie846/myradar/src/flight"
 	"github.com/jessie846/myradar/src/message_receiver"
-	"github.com/jessie846/myradar/src/window"
 )
 
 func Main() {

@@ -7,8 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"your_project/file_list"
-
+	"github.com/jessie846/eram/src/file_list"
 	"github.com/streadway/amqp"
 )
 
