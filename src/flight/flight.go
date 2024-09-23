@@ -69,7 +69,9 @@ type Pointout struct {
 }
 
 // Flight represents a flight with associated data like altitude, speed, and ownership
+// Flight represents a flight with associated data like altitude, speed, and ownership
 type Flight struct {
+	guid               string // Add this field to hold the flight's GUID
 	Acid               string
 	Cid                string
 	Arrival            *string
@@ -95,13 +97,13 @@ type Flight struct {
 	DatablockLeaderLen uint8
 }
 
-// LatLong represents a latitude and longitude position (substitute for missing struct)
+// LatLong represents a latitude and longitude position
 type LatLong struct {
 	Latitude  float64
 	Longitude float64
 }
 
-// NewFlight creates a new flight from NAS flight data (dummy NASFlight struct assumed)
+// NewFlight creates a new flight from NAS flight data
 func NewFlight(nas NasFlight, currentPosition Owner) Flight {
 	var flight Flight
 	flight.Acid = nas.FlightIdentification.Acid
@@ -119,9 +121,9 @@ func NewFlight(nas NasFlight, currentPosition Owner) Flight {
 	// Handle handoff creation
 	if nas.Handoff != nil {
 		flight.Handoff = &Handoff{
-			From:      &nas.Handoff.From,
+			From:      nas.Handoff.From, // Already a pointer, no need to take address
 			To:        nas.Handoff.To,
-			Status:    &nas.Handoff.Status,
+			Status:    nas.Handoff.Status, // Already a pointer, no need to take address
 			EventTime: time.Now(),
 		}
 	}
@@ -163,9 +165,9 @@ func (f *Flight) UpdateFromNas(nas NasFlight, currentPosition Owner) {
 	f.LastSeenAt = time.Now()
 	if nas.Handoff != nil {
 		f.Handoff = &Handoff{
-			From:      &nas.Handoff.From,
+			From:      nas.Handoff.From, // Already a pointer
 			To:        nas.Handoff.To,
-			Status:    &nas.Handoff.Status,
+			Status:    nas.Handoff.Status, // Already a pointer
 			EventTime: time.Now(),
 		}
 	}
@@ -202,7 +204,9 @@ func main() {
 }
 
 // Example of a dummy NasFlight struct for illustrative purposes
+// Example of a dummy NasFlight struct for illustrative purposes
 type NasFlight struct {
+	guid                 string // Add guid to the NasFlight struct
 	FlightIdentification struct {
 		Acid string
 		Cid  string

@@ -1,4 +1,4 @@
-package main
+package flight_list
 
 import (
 	"fmt"
@@ -16,12 +16,13 @@ type FlightList struct {
 	cidToGuidMap  map[string]string
 }
 
-// Flight is a placeholder for your actual Flight struct (implement as needed)
+// Flight represents a flight with associated data
 type Flight struct {
-	acid         string
-	cid          string
-	lastSeenAt   time.Time
-	flightStatus string
+	guid         string    // Unique identifier for the flight
+	Acid         string    // Aircraft Identification
+	Cid          string    // Computer Identification
+	LastSeenAt   time.Time // Last time the flight was seen/updated
+	FlightStatus string    // Status of the flight (e.g., "ACTIVE", "DROPPED", etc.)
 }
 
 // NewFlightList creates and initializes a new FlightList
@@ -65,7 +66,7 @@ func (fl *FlightList) FindByFlid(flid string) (*Flight, bool) {
 
 // Update updates the list of flights with the provided data
 func (fl *FlightList) Update(data string, currentPosition string) {
-	// Assuming nasData.ParseData is a function to parse the input data into a list of Flight objects
+	// Assuming ParseData is a function to parse the input data into a list of Flight objects
 	nasFlights := ParseData(data)
 
 	for _, nasFlight := range nasFlights {
@@ -79,23 +80,24 @@ func (fl *FlightList) Update(data string, currentPosition string) {
 		if exists {
 			// Update the flight record
 			flight.updateFromNas(&nasFlight, currentPosition)
-			fl.acidToGuidMap[flight.acid] = nasFlight.guid
-			fl.cidToGuidMap[flight.cid] = nasFlight.guid
+			fl.acidToGuidMap[flight.Acid] = nasFlight.guid
+			fl.cidToGuidMap[flight.Cid] = nasFlight.guid
 			fl.flights[nasFlight.guid] = flight
 		} else {
 			// Create a new flight record
 			flight := Flight{
-				acid:       nasFlight.acid,
-				cid:        nasFlight.cid,
-				lastSeenAt: time.Now().UTC(),
+				guid:       nasFlight.guid, // Assign the GUID
+				Acid:       nasFlight.Acid,
+				Cid:        nasFlight.Cid,
+				LastSeenAt: time.Now().UTC(),
 			}
-			fl.acidToGuidMap[flight.acid] = nasFlight.guid
-			fl.cidToGuidMap[flight.cid] = nasFlight.guid
+			fl.acidToGuidMap[flight.Acid] = nasFlight.guid
+			fl.cidToGuidMap[flight.Cid] = nasFlight.guid
 			fl.flights[nasFlight.guid] = flight
 		}
 
 		// Handle dropped or completed flights
-		if nasFlight.flightStatus == "DROPPED" || nasFlight.flightStatus == "COMPLETED" || nasFlight.flightStatus == "CANCELLED" {
+		if nasFlight.FlightStatus == "DROPPED" || nasFlight.FlightStatus == "COMPLETED" || nasFlight.FlightStatus == "CANCELLED" {
 			delete(fl.flights, nasFlight.guid)
 		}
 	}
@@ -114,27 +116,27 @@ func (fl *FlightList) pruneDeadFlights() {
 func (fl *FlightList) deadFlights() []string {
 	deadFlights := []string{}
 	for guid, flight := range fl.flights {
-		if time.Since(flight.lastSeenAt) > DROP_AFTER {
+		if time.Since(flight.LastSeenAt) > DROP_AFTER {
 			deadFlights = append(deadFlights, guid)
 		}
 	}
 	return deadFlights
 }
 
-// Placeholder function for parsing NAS data
+// ParseData is a placeholder function for parsing NAS data
 func ParseData(data string) []Flight {
 	// This function should implement logic to parse FAA NAS flight data
 	// Returning dummy data for the sake of completeness
 	return []Flight{
-		{acid: "ABC123", cid: "XYZ456", lastSeenAt: time.Now().UTC()},
+		{guid: "guid1", Acid: "ABC123", Cid: "XYZ456", LastSeenAt: time.Now().UTC()},
 	}
 }
 
 // Update a flight with new NAS data
 func (f *Flight) updateFromNas(nasFlight *Flight, currentPosition string) {
-	f.acid = nasFlight.acid
-	f.cid = nasFlight.cid
-	f.lastSeenAt = time.Now().UTC()
+	f.Acid = nasFlight.Acid
+	f.Cid = nasFlight.Cid
+	f.LastSeenAt = time.Now().UTC()
 	// Add more fields to update as necessary
 }
 

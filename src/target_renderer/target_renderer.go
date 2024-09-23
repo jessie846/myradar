@@ -3,12 +3,11 @@ package main
 import (
 	"time"
 
+	"github.com/jessie846/myradar/src/flight"
+	"github.com/jessie846/myradar/src/renderer"
+	"github.com/jessie846/myradar/src/utils"
 	"github.com/veandco/go-sdl2/sdl"
 	"github.com/veandco/go-sdl2/ttf"
-
-	"myapp/flight"
-	"myapp/renderer"
-	"myapp/utils"
 )
 
 const (

@@ -1,4 +1,4 @@
-package main
+package map_renderer
 
 import (
 	"errors"
@@ -6,10 +6,10 @@ import (
 	"image/color"
 
 	"github.com/paulmach/go.geojson"
-	"sdl"
-	"your_project/latlong"
-	"your_project/map"
-	"your_project/renderer"
+	"github.com/veandco/go-sdl2/sdl" // Make sure you added this package using 'go get'
+	"github.com/jessie846/myradar/src/latlong"
+	"github.com/jessie846/myradar/src/renderer"
+	"github.com/jessie846/myradar/src/custom_map"
 )
 
 type MapRenderer struct {
