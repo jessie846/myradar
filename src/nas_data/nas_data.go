@@ -1,4 +1,4 @@
-package main
+package nas_data
 
 import (
 	"encoding/xml"

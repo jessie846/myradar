@@ -1,4 +1,4 @@
-package main
+package flip_flop_timer
 
 import (
 	"time"

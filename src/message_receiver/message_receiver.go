@@ -1,4 +1,4 @@
-package main
+package message_receiver
 
 import (
 	"fmt"
@@ -7,7 +7,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/jessie846/eram/src/file_list"
+	"myradar/src/file_list"
+
 	"github.com/streadway/amqp"
 )
 

@@ -1,33 +1,29 @@
-package main
+package windows
 
 import (
 	"fmt"
 	"time"
-	"os"
-	"log"
+
+	"myradar/src/flight"
+	"myradar/src/flight_list"
+	"myradar/src/lat_long"
+	"myradar/src/mca"
+	"myradar/src/renderer"
+	"myradar/src/response_area"
+	"myradar/src/target_renderer"
 
 	"github.com/veandco/go-sdl2/sdl"
 	"github.com/veandco/go-sdl2/ttf"
-	"github.com/veandco/go-sdl2/sdl_ttf"
-	"github.com/faiface/beep"
-	"github.com/your_package/command_processor"
-	"github.com/your_package/flight"
-	"github.com/your_package/flight_list"
-	"github.com/your_package/lat_long"
-	"github.com/your_package/renderer"
-	"github.com/your_package/response_area"
-	"github.com/your_package/target_renderer"
-	"github.com/your_package/mca"
 )
 
 const (
-	windowTitle            = "not-ERAM"
-	scaleFactor            = 0.75
-	panFactor              = 0.75
-	datablockFontName      = "Inconsolata-VariableFont_wdth,wght.ttf"
-	datablockFontSize      = 12
-	clickTargetSize float32 = 5.0
-	visibilitySlop int = 50
+	windowTitle               = "Bomboclaat-radar"
+	scaleFactor               = 0.75
+	panFactor                 = 0.75
+	datablockFontName         = "Inconsolata-VariableFont_wdth,wght.ttf"
+	datablockFontSize         = 12
+	clickTargetSize   float32 = 5.0
+	visibilitySlop    int     = 50
 )
 
 // potentiallyVisible checks if a flight is visible within the rendering window.

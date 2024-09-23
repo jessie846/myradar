@@ -1,10 +1,9 @@
-package main
+package mca
 
 import (
 	"fmt"
+	"myradar/src/renderer"
 	"strings"
-
-	"github.com/jessie846/myradar/src/renderer"
 
 	"github.com/veandco/go-sdl2/sdl"
 )

@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/jessie846/myradar/src/custom_map"
-	"github.com/jessie846/myradar/src/file_list"
-	"github.com/jessie846/myradar/src/flight"
-	"github.com/jessie846/myradar/src/message_receiver"
+	"myradar/src/custom_map"
+	"myradar/src/file_list"
+	"myradar/src/flight"
+	"myradar/src/message_receiver"
 )
 
 func Main() {

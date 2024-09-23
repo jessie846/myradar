@@ -1,4 +1,4 @@
-package main
+package response_area
 
 import (
 	"math"
