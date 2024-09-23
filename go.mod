@@ -8,5 +8,6 @@ require (
 	github.com/jessie846/myradar/src/flight v1.0.0
 	github.com/jessie846/myradar/src/latlong v1.0.0
 	github.com/jessie846/myradar/src/renderer v1.0.0
-	github.com/jessie846/myradar/src/custom_map v1.0.0
+	github.com/streadway/amqp v1.0.0-xxxx
+    github.com/jessie846/myradar/src/custom_map v1.0.0
 )

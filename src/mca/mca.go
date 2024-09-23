@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"your_project/renderer"
+	"github.com/jessie846/myradar/src/renderer"
 
 	"github.com/veandco/go-sdl2/sdl"
 )

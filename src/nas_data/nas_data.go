@@ -114,7 +114,7 @@ func (f *NasFlight) Guid() string {
 	return f.Gufi.Guid
 }
 
-func (f *NasFlight) InterimAltitude() InterimAltitude {
+func (f *NasFlight) GetInterimAltitude() InterimAltitude {
 	if f.InterimAltitude != nil {
 		if f.InterimAltitude.IsNull() {
 			return Unset
@@ -189,11 +189,11 @@ func (p *NasAircraftPosition) HasLatLong() bool {
 }
 
 func (p *NasAircraftPosition) Latitude() string {
-	return p.Position.Latitude()
+	return p.Position.Location.Latitude()
 }
 
 func (p *NasAircraftPosition) Longitude() string {
-	return p.Position.Longitude()
+	return p.Position.Location.Longitude()
 }
 
 func (p *NasAircraftPosition) CurrentAltitude() float64 {
