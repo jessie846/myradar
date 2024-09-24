@@ -5,41 +5,33 @@ import (
 	"fmt"
 	"image/color"
 
-	"github.com/paulmach/go.geojson"
-	"github.com/veandco/go-sdl2/sdl" // Make sure you added this package using 'go get'
+	"github.com/jessie846/myradar/src/custom_map"
 	"github.com/jessie846/myradar/src/latlong"
 	"github.com/jessie846/myradar/src/renderer"
-	"github.com/jessie846/myradar/src/custom_map"
+
+	geojson "github.com/paulmach/go.geojson"
+	"github.com/veandco/go-sdl2/sdl"
 )
 
 type MapRenderer struct {
-	maps []*map.Map
+	maps []*custom_map.Map // Ensure this is the correct type
 }
 
 // NewMapRenderer creates a new MapRenderer with a list of maps
-func NewMapRenderer(maps []*map.Map) *MapRenderer {
+func NewMapRenderer(maps []*custom_map.Map) *MapRenderer {
 	return &MapRenderer{maps: maps}
 }
 
 // DrawMap draws the geojson map features using the provided renderer
-func (mr *MapRenderer) DrawMap(m *map.Map, r *renderer.Renderer) error {
-	switch geo := m.GeoJson.(type) {
-	case *geojson.FeatureCollection:
-		for _, feature := range geo.Features {
-			if feature.Geometry != nil {
-				if err := mr.DrawGeometry(feature.Geometry, r); err != nil {
-					return err
-				}
-			}
-		}
-	case *geojson.Feature:
-		if geo.Geometry != nil {
-			if err := mr.DrawGeometry(geo.Geometry, r); err != nil {
+func (mr *MapRenderer) DrawMap(m *custom_map.Map, r *renderer.Renderer) error {
+	fc := m.GeoJson // Use directly without type assertion
+
+	for _, feature := range fc.Features {
+		if feature.Geometry != nil {
+			if err := mr.DrawGeometry(feature.Geometry, r); err != nil {
 				return err
 			}
 		}
-	case *geojson.Geometry:
-		return mr.DrawGeometry(geo, r)
 	}
 	return nil
 }
@@ -47,35 +39,34 @@ func (mr *MapRenderer) DrawMap(m *map.Map, r *renderer.Renderer) error {
 // DrawGeometry draws different types of geometries using the provided renderer
 func (mr *MapRenderer) DrawGeometry(geometry *geojson.Geometry, r *renderer.Renderer) error {
 	switch geometry.Type {
-	case geojson.TypeGeometryCollection:
+	case "GeometryCollection":
 		for _, geo := range geometry.Geometries {
 			if err := mr.DrawGeometry(geo, r); err != nil {
 				return err
 			}
 		}
-	case geojson.TypeLineString:
+	case "LineString":
 		if len(geometry.LineString) == 0 {
 			return errors.New("LineString geometry is empty")
 		}
 
-		var lastPoint *sdl.Point = nil
+		var lastPoint *sdl.Point
 		for _, coord := range geometry.LineString {
 			latLong := latlong.LatLong{
 				Latitude:  coord[1],
 				Longitude: coord[0],
 			}
-			point := r.ScreenRelativePosition(&latLong)
+			point := r.ScreenRelativePosition(renderer.LatLong(latLong)) // Convert to renderer.LatLong
 
 			if lastPoint != nil {
-				if err := r.DrawLine(lastPoint, &point, color.Gray{Y: 128}); err != nil {
+				if err := r.DrawLine(*lastPoint, point, color.Gray{Y: 128}); err != nil {
 					return fmt.Errorf("failed to draw line: %v", err)
 				}
 			}
 			lastPoint = &point
 		}
 	default:
-		// Handle unsupported geometry types
-		return nil
+		return nil // Handle unsupported geometry types
 	}
 
 	return nil

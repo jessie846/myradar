@@ -8,6 +8,10 @@ import (
 	geojson "github.com/paulmach/go.geojson"
 )
 
+type Map struct {
+	GeoJson *geojson.FeatureCollection
+}
+
 // LoadMap loads the GeoJSON map file
 func LoadMap(filename string) (*geojson.FeatureCollection, error) {
 	file, err := os.Open(filename)

@@ -1,21 +1,15 @@
-module myradar
+module github.com/jessie846/myradar
 
 go 1.23.1
 
-require (
-    github.com/paulmach/go.geojson v1.5.0
-    github.com/veandco/go-sdl2 v0.4.40
-    github.com/streadway/amqp v1.0.0
-)
-
-replace github.com/veandco/go-sdl2/sdl/ttf v0.4.40 => github.com/veandco/go-sdl2 v0.4.40
-
 // Replace the local paths to your custom modules
-replace github.com/jessie846/myradar/src/custom_map v1.0.0 => ./src/custom_map
-replace github.com/jessie846/myradar/src/flight v1.0.0 => ./src/flight
-replace github.com/jessie846/myradar/src/flight_list v1.0.0 => ./src/flight_list
-replace github.com/jessie846/myradar/src/lat_long v1.0.0 => ./src/lat_long
-replace github.com/jessie846/myradar/src/renderer v1.0.0 => ./src/renderer
-replace github.com/jessie846/myradar/src/target_renderer v1.0.0 => ./src/target_renderer
-replace github.com/jessie846/myradar/src/response_area v1.0.0 => ./src/response_area
-replace github.com/jessie846/myradar/src/mca v1.0.0 => ./src/mca
+replace (
+	github.com/jessie846/myradar/src/custom_map => ./src/custom_map
+	github.com/jessie846/myradar/src/flight => ./src/flight
+	github.com/jessie846/myradar/src/flight_list => ./src/flight_list
+	github.com/jessie846/myradar/src/lat_long => ./src/lat_long
+	github.com/jessie846/myradar/src/mca => ./src/mca
+	github.com/jessie846/myradar/src/renderer => ./src/renderer
+	github.com/jessie846/myradar/src/response_area => ./src/response_area
+	github.com/jessie846/myradar/src/target_renderer => ./src/target_renderer
+)

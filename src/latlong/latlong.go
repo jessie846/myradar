@@ -1,4 +1,4 @@
-package lat_long
+package latlong
 
 // LatLong represents a geographical coordinate with latitude and longitude
 type LatLong struct {

@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"myradar/src/file_list"
+	"github.com/jessie846/myradar/src/file_list"
 
 	"github.com/streadway/amqp"
 )
